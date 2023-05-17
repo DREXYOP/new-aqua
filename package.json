@@ -1,0 +1,16 @@
+{
+  "name": "moosic",
+  "version": "1.0.0",
+  "description": "",
+  "main": "start.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "eslint ."
+  },
+  "keywords": [],
+  "author": "Drexy_xD",
+  "license": "ISC",
+  "devDependencies": {
+    "eslint": "^8.40.0"
+  }
+}
