@@ -14,15 +14,15 @@ export class BaseClient extends Client {
                 gib.GuildVoiceStates,
                 gib.GuildMessages
             ]
-        })
+        });
     }
     async login(token) {
-        if (!token) throw new RangeError('You must include TOKEN to login either in config.json or env')
+        if (!token) throw new RangeError('You must include TOKEN to login either in config.json or env');
         await super.login(token)
             .then(x => {
-                return x
+                return x;
             })
-            .catch(err => console.log(err))
+            .catch(err => console.log(err));
     }
 
 }
