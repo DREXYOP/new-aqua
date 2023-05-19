@@ -1,4 +1,4 @@
-const { Client, GatewayIntentBits } = require('discord.js');
+import { Client, GatewayIntentBits } from 'discord.js';
 const gib = GatewayIntentBits;
 
 export class BaseClient extends Client {
@@ -12,12 +12,15 @@ export class BaseClient extends Client {
             intents: [
                 gib.Guilds,
                 gib.GuildVoiceStates,
-                gib.GuildMessages
+                gib.GuildMessages,
+                gib.GuildMembers,
+                gib.GuildMessageTyping,
+                gib.MessageContent
             ]
         });
     }
     async login(token) {
-        if (!token) throw new RangeError('You must include TOKEN to login either in config.json or env');
+        if (!token) throw new RangeError('NO TOKEN WAS PROVIDED.');
         await super.login(token)
             .then(x => {
                 return x;
