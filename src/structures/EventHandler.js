@@ -1,11 +1,12 @@
-import { readdirSync } from "node:fs";
-import { join } from 'path';
+const {readdirSync} = require("node:fs")
+const {join} = require("path")
 
-export class ClientEventHandler {
+
+ class ClientEventHandler {
     constructor(client) {
         this.client = client
         
-        client.logger.debug('EVENTS', 'Loading client events')
+        client.logger.debug('Client Events', 'Loading events')
     }
 
     start() {
@@ -13,7 +14,7 @@ export class ClientEventHandler {
      let nic = 0;
         for (const file of eventFiles) {
             
-           const event = require(`../events/client/${file}`)
+            const event = require(`../events/client/${file}`);
             if (event.once) {
                 this.client.once(event.name, (...args) => event.execute( this.client, ...args));
             } else {
@@ -21,26 +22,25 @@ export class ClientEventHandler {
             }
             nic++;
         }
-        this.client.logger.debug('EVENTS', `Loaded ${nic} events`)
+        this.client.logger.debug('Client EVENTS', `Loaded ${nic} events`)
     }
     
 }
 
 
-
-export class MusicEventHandler {
+ class MusicEventHandler {
     constructor(client) {
         this.client = client
         
-        client.logger.debug('EVENTS', 'Loading events')
+        client.logger.debug('Music EVENTS', 'Loading events')
     }
 
     start() {
-        const eventFiles = readdirSync(join(__dirname, "..","..","managers","events")).filter(file => file.endsWith('.js'));
+        const eventFiles = readdirSync(join(__dirname, "..","events","music")).filter(file => file.endsWith('.js'));
      let nic = 0;
         for (const file of eventFiles) {
             
-            const event = require(`../../managers/events/${file}`);
+            let event = require(`../events/music/${file}`);
             if (event.once) {
                 this.client.once(event.name, (...args) => event.execute( this.client, ...args));
             } else {
@@ -48,8 +48,9 @@ export class MusicEventHandler {
             }
             nic++;
         }
-        this.client.logger.debug('EVENTS', `Loaded ${nic} events`)
+        this.client.logger.debug('Music EVENTS', `Loaded ${nic} events`)
     }
     
 }
 
+module.exports = {ClientEventHandler,MusicEventHandler}

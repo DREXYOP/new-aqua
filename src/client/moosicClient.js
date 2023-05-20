@@ -1,17 +1,20 @@
-import { BaseClient } from "../structures/BaseClient.js";
-import { Logger } from "../structures/Logger.js";
-// import { Loader } from "src/structures/Loaders.js";
-import { Collection } from "discord.js";
+const BaseClient = require("../structures/BaseClient.js");
+const  Logger  = require("../structures/Logger.js");
+const { ClientEventHandler , MusicEventHandler } = require("../structures/EventHandler.js");
+const { Collection } = require("discord.js");
 
-export class moosicClient extends BaseClient {
+module.exports = class moosicClient extends BaseClient {
     constructor(token_main, config) {
         super();
         this.login(token_main);
         this.logger = new Logger();
         this.config = config;
         this.prefix = "-";
-        this.commands = new Collection()
-        
+        this.commands = new Collection();
+        this.aliases = new Collection();
+        this.cooldowns = new Collection();
+        new ClientEventHandler(this).start();
+        new MusicEventHandler(this).start();
     }
     
 }

@@ -1,8 +1,8 @@
-import moment from "moment";
+const moment = require("moment");
 const date = `${moment().format("DD-MM-YYYY hh:mm:ss")}`;
-import colors from 'colors';
+const colors = require('colors');
 colors.enable();
-export class Logger {
+module.exports = class Logger {
 
     error(error) {
         console.error(error);

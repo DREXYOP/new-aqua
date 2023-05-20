@@ -1,7 +1,7 @@
-import { Client, GatewayIntentBits } from 'discord.js';
+const { Client, GatewayIntentBits } = require('discord.js');
 const gib = GatewayIntentBits;
 
-export class BaseClient extends Client {
+ class BaseClient extends Client {
     constructor() {
         super({
             failIfNotExists: true,
@@ -29,3 +29,4 @@ export class BaseClient extends Client {
     }
 
 }
+module.exports = BaseClient
