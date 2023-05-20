@@ -39,7 +39,7 @@ class Loader {
                             : 0;
                     ++i;
                 }
-                this.client.logger.log("Comamnds",`Successfully loaded ${i} slash commands .`);
+                this.client.logger.log("Comamnds", `Successfully loaded ${i} slash commands .`);
             });
         });
 
@@ -50,14 +50,37 @@ class Loader {
         rest
             .put(
                 Routes.applicationCommands(
-                    this.client.user ? this.client.user.id : "985530826429190175" ,
+                    this.client.user ? this.client.user.id : "985530826429190175",
                 ),
                 { body: data },
             )
             .then(() =>
-                this.client.logger.log("Commands",'Successfully reloaded application slash commands.'),
+                this.client.logger.log("Commands", 'Successfully reloaded application slash commands.'),
             )
             .catch((e) => this.client.logger.error(e.name, e.message));
+    }
+    loadPlayer() {
+        this.manager = new Kazagumo({
+            plugins: [
+                new Spotify({
+                    clientId: this.client.config.SpotifyID,
+                    clientSecret: this.client.config.SpotifySecret,
+                    playlistPageLimit: 3, // optional ( 100 tracks per page )
+                    albumPageLimit: 4, // optional ( 50 tracks per page )
+                    searchLimit: 10, // optional ( track search limit. Max 50 )
+                    searchMarket: 'IN', // optional || default: US ( Enter the country you live in. [ Can only be of 2 letters. For eg: US, IN, EN ] )//
+                }),
+                new Plugins.PlayerMoved(this),
+            ],
+            defaultSearchEngine: "youtube",
+            send: (guildId, payload) => {
+                const guild = this.guilds.cache.get(guildId);
+                if (guild) guild.shard.send(payload);
+            }
+        }, new Connectors.DiscordJS(this.client), this.config.nodes, shoukakuOptions);
+        return this.Kazagumo;
+
+
     }
 
 }

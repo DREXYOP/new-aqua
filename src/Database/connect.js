@@ -12,11 +12,11 @@ class DataBase {
         });
 
         mongoose.connection.once("open", async () => {
-            await this.client.logger.log('[DATABASE]', 'Successfuly Connected To DataBase')
+            await this.client.logger.log('DATABASE', 'Successfuly Connected To DataBase')
 
         })
         mongoose.connection.on("disconnected", async () => {
-            await this.client.logger.log('[DATABASE]', 'DataBase got disconnected')
+            await this.client.logger.log('DATABASE', 'DataBase got disconnected')
 
         })
         return;
