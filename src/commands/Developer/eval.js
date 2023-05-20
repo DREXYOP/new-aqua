@@ -4,14 +4,14 @@ const Command = require("../../structures/Command.js");
 module.exports = class Ping extends Command {
     constructor(client) {
         super(client, {
-            name: 'ping',
+            name: 'eval',
             description: {
-                content: 'Returns the latency of the bot.',
-                usage: 'misc',
-                examples: ['ping'],
+                content: 'eval code through bot.',
+                usage: 'eval',
+                examples: ['eval'],
             },
-            aliases: ['pong'],
-            category: 'general',
+            aliases: ['evl'],
+            category: 'developer',
             cooldown: 3,
             player: {
                 voice: false,
@@ -20,7 +20,7 @@ module.exports = class Ping extends Command {
                 djPerm: null,
             },
             permissions: {
-                dev: false,
+                dev: true,
                 client: ['SendMessages', 'ViewChannels', 'EmbedLinks'],
                 user: [],
                 voteRequired: false,
@@ -29,7 +29,6 @@ module.exports = class Ping extends Command {
         });
     }
     async run(ctx, args) {
-        const msg = await ctx.sendDeferMessage('Pinging...');
-        return await ctx.editMessage(`API Latency: \`${Math.round(ctx.ping)}ms.\``);
+        
     }
 };

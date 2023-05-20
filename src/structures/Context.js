@@ -44,9 +44,9 @@ module.exports = class Context {
         * @type {String}
         */
         this.guildId = ctx.guildId;
-        /**
-        * @type {import('@structures/Client')}
-        */
+        
+        this.ping = ctx.client.ws.ping;
+
         this.client = ctx.client;
         /**
          * @type {User}

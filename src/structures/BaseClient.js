@@ -1,10 +1,12 @@
 const { Client, GatewayIntentBits } = require('discord.js');
 const gib = GatewayIntentBits;
-
+const { getInfo } = require('discord-hybrid-sharding');
  class BaseClient extends Client {
     constructor() {
         super({
             failIfNotExists: true,
+            shards: getInfo().SHARD_LIST, 
+            shardCount: getInfo().TOTAL_SHARDS,
             allowedMentions: {
                 parse: ['roles', 'users'],
                 repliedUser: false,

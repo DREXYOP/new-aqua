@@ -4,8 +4,8 @@ const colors = require('colors');
 colors.enable();
 module.exports = class Logger {
 
-    error(error) {
-        console.error(error);
+    error(error , content) {
+        console.error(`[${date}]`.green, ` : [DEBUG]`.red, `[${error}]`.yellow, ` =>  ${content}`.cyan);
     }
 
     debug(name, content) {
