@@ -8,7 +8,13 @@ let spotify = new Spotify({
 
 class Manager extends Poru{
     constructor(client){
-        super(client, client.config.nodes, {
+        super(client,[{
+            "name": "NODE_1",
+            "host":"node1.kartadharta.xyz", 
+            "port": 443,
+            "password": "kdlavalink",
+            "secure": true
+          }], {
             library:"discord.js",
             defaultPlatform: "ytsearch",
             plugins: [spotify]
