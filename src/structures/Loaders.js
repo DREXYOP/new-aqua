@@ -1,4 +1,4 @@
-const { Routes, REST, ApplicationCommandType } = require('discord.js');
+const { Routes, REST, ApplicationCommandType, PermissionsBitField } = require('discord.js');
 const { readdirSync } = require('node:fs');
 
 class Loader {
@@ -22,7 +22,6 @@ class Loader {
                 this.client.commands.set(cmd.name, cmd);
                 if (cmd.aliases && Array.isArray(cmd.aliases)) {
                     for (const alias of cmd.aliases) {
-                        console.log(alias);
                         this.client.aliases.set(alias, cmd);
                     }
                 }

@@ -41,11 +41,7 @@ const {join} = require("path")
         for (const file of eventFiles) {
             
             let event = require(`../events/music/${file}`);
-            if (event.once) {
-                this.client.once(event.name, (...args) => event.execute( this.client, ...args));
-            } else {
-                this.client.on(event.name, (...args) => event.execute(this.client,...args));
-            }
+            this.client.poru.on(event.name, event.execute.bind(this.client , this.client));
             nic++;
         }
         this.client.logger.debug('Music EVENTS', `Loaded ${nic} events`)

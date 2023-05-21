@@ -14,6 +14,7 @@
     "eslint": "^8.40.0"
   },
   "dependencies": {
+    "chalk": "^5.2.0",
     "colors": "^1.4.0",
     "discord-hybrid-sharding": "^2.1.2",
     "discord.js": "^14.11.0",
@@ -21,6 +22,9 @@
     "module": "^1.2.5",
     "module-alias": "^2.2.2",
     "moment": "^2.29.4",
-    "mongoose": "^7.2.0"
+    "mongoose": "^7.2.0",
+    "poru": "^4.2.0",
+    "poru-spotify": "^2.0.2",
+    "shoukaku": "^3.4.0"
   }
 }
