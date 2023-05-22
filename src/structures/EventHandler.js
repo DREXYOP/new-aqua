@@ -41,7 +41,8 @@ const {join} = require("path")
         for (const file of eventFiles) {
             
             let event = require(`../events/music/${file}`);
-            this.client.poru.on(event.name, event.execute.bind(this.client , this.client));
+        
+        this.client.shoukaku.on(event.name, (...args) => event.run(this.client , ...args));
             nic++;
         }
         this.client.logger.debug('Music EVENTS', `Loaded ${nic} events`)

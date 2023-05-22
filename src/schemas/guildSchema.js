@@ -10,14 +10,6 @@ const Options = {
     textChannelId: { type: String, default: false },
     DjRoles: { type: Array, default: [] },
     announce: { type: Boolean, default: false },
-    premium: {
-        active: { type: Boolean, default: false },
-        subscriptionType: {
-            monthly: { type: Boolean, default: false },
-            lifetime: { type: Boolean, default: false }
-        },
-        expiryTimestamp: { type: String, default: false }
-    }
 };
 
 module.exports = mongoose.model('Guild', Options);

@@ -5,7 +5,7 @@ const { Collection , EmbedBuilder } = require("discord.js");
 const { Loader } = require("../structures/Loaders.js");
 const { ClusterClient } = require('discord-hybrid-sharding');
 const { DataBase } = require("../Database/connect.js");
-const { Manager } = require("../music/Manager.js");
+const Manager = require("../music/Shoukaku.js");
 
 
 module.exports = class moosicClient extends BaseClient {
@@ -18,7 +18,7 @@ module.exports = class moosicClient extends BaseClient {
         this.aliases = new Collection();
         this.cooldowns = new Collection();
         this.cluster = new ClusterClient(this);
-        this.poru = new Manager(this);
+        this.shoukaku = new Manager(this);
         new DataBase(this).connect();
         new ClientEventHandler(this).start();
         new MusicEventHandler(this).start();
