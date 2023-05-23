@@ -1,11 +1,18 @@
 const Context = require("../../structures/Context.js");
 
-const { InteractionType, PermissionFlagsBits} = require('discord.js');
+const { 
+    CommandInteraction,
+    Interaction,
+    Collection,
+    ChannelType,
+    InteractionType,
+    PermissionFlagsBits, 
+} = require('discord.js');
 module.exports = {
     name: 'interactionCreate',
     once: false,
-    
-    async execute(client,interaction) {
+
+    async execute(client, interaction) {
 
         if (interaction.type === InteractionType.ApplicationCommand) {
             const { commandName } = interaction;
@@ -16,7 +23,7 @@ module.exports = {
 
             const ctx = new Context(interaction, interaction.options.data);
 
-            client.logger.log("command",`${command} used by ${ctx.author.id}`);
+            client.logger.log("command", `${command} used by ${ctx.author.id}`);
             if (!interaction.inGuild() || !interaction.channel.permissionsFor(interaction.guild.members.me).has(PermissionFlagsBits.ViewChannel)) return;
 
             if (!interaction.guild.members.me.permissions.has(PermissionFlagsBits.SendMessages)) return await interaction.author.send({ content: `I don't have **\`SEND_MESSAGES\`** permission in \`${interaction.guild.name}\`\nchannel: <#${interaction.channelId}>` }).catch(() => { });

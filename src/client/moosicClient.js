@@ -6,6 +6,7 @@ const { Loader } = require("../structures/Loaders.js");
 const { ClusterClient } = require('discord-hybrid-sharding');
 const { DataBase } = require("../Database/connect.js");
 const Manager = require("../music/Shoukaku.js");
+const { Queue } = require("../music/Queue.js");
 
 
 module.exports = class moosicClient extends BaseClient {
@@ -13,12 +14,14 @@ module.exports = class moosicClient extends BaseClient {
         super();
         this.logger = new Logger();
         this.config = config;
+        this.color = config.colors;
         this.prefix = config.prefix;
         this.commands = new Collection();
         this.aliases = new Collection();
         this.cooldowns = new Collection();
         this.cluster = new ClusterClient(this);
         this.shoukaku = new Manager(this);
+        this.queue = new Queue(this);
         new DataBase(this).connect();
         new ClientEventHandler(this).start();
         new MusicEventHandler(this).start();

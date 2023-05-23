@@ -100,7 +100,7 @@ module.exports = class Context {
      */
     async sendMessage(content) {
         if (this.isInteraction) {
-            this.msg = this.interaction.deferred ? await this.followUp(content) : await this.reply(content);
+            this.msg = this.interaction.deferred ? await this.followUp(content) : await this.channel.send(content);
             return this.msg;
         } else {
             this.msg = this.message.channel.send(content);
