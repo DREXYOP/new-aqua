@@ -1,6 +1,13 @@
 const Context = require("../../structures/Context.js");
 
-const { PermissionFlagsBits} = require('discord.js');
+const {
+    CommandInteraction,
+    Interaction,
+    Collection,
+    ChannelType,
+    InteractionType,
+    PermissionFlagsBits,
+} = require('discord.js');
 module.exports = {
     name: 'messageCreate',
     once: false,
